@@ -39,6 +39,11 @@ pipeline {
         }
 
         stage('Deploy to k8s'){
+            agent {
+                docker {
+                    image 'bitnami/kubectl:latest'
+                }
+            }
             steps{
                 sh '''
                     kubectl
