@@ -39,19 +39,19 @@ pipeline {
         }
 
         stage('Deploy to k8s') {
-              agent {
-                docker {
-                  image 'bitnami/kubectl:latest'
-                }
-              }
-            steps {
-                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-                    sh '''
+              steps {
+                script {
+                  docker.image('bitnami/kubectl:latest').inside {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                      sh '''
+                        kubectl version --client
                         kubectl apply -f k8s/deployment.yml
                         kubectl apply -f k8s/service.yml
-                    '''
+                      '''
+                    }
+                  }
                 }
+              }
             }
-        }
     }
 }
