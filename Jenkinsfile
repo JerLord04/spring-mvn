@@ -17,7 +17,7 @@ pipeline {
         stage('Build image'){
             steps{
                 script{
-                    sh '${DOCKER_HOME} build -t discovery-service:latest'
+                    sh '${DOCKER_HOME} build -t discovery-service:latest .'
                 }
             }
         }
