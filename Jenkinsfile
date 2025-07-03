@@ -13,5 +13,13 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+
+        stage('Build image'){
+            steps{
+                script{
+                    sh '${DOCKER_HOME} build -t discovery-service:latest'
+                }
+            }
+        }
     }
 }
