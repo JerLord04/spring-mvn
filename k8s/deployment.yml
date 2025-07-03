@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: discovery-service-app
-          image: discovery-service:latest
+          image: jerlord04/discovery-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9001
