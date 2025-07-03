@@ -23,11 +23,17 @@ pipeline {
         }
 
         stage('Push image to hub'){
-            steps{
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-pwd',
+                    usernameVariable: 'DOCKER_USERNAME',
+                    passwordVariable: 'DOCKER_PASSWORD'
+                )]) {
                 sh '''
                     ${DOCKER_HOME} login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
                     ${DOCKER_HOME} push discovery-service:latest
                 '''
+                }
             }
         }
     }
