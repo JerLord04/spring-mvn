@@ -32,7 +32,7 @@ pipeline {
                 sh '''
                     ${DOCKER_HOME} login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
                     ${DOCKER_HOME} tag discovery-service:latest jerlord04/discovery-service:latest
-                    ${DOCKER_HOME} push discovery-service:latest
+                    ${DOCKER_HOME} push jerlord04/discovery-service:latest
                 '''
                 }
             }
