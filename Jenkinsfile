@@ -4,7 +4,7 @@ pipeline {
         maven 'maven_3_9_10'
     }
     environment{
-        DOCKER_HOME = '/usr/local/bin/docker'
+        DOCKER_HOME = '/usr/bin/docker'
     }
     stages{
         stage('Build Maven'){
