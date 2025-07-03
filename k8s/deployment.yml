@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: discovery-service-app
-          image: janescience/discovery-service:latest
+          image: discovery-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9001

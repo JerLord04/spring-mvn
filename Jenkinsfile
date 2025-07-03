@@ -21,5 +21,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Push image to hub'){
+            steps{
+                sh '''
+                    ${DOCKER_HOME} login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+                    ${DOCKER_HOME} push discovery-service:latest
+                '''
+            }
+        }
     }
 }
