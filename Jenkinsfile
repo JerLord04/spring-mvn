@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+          	cloud 'kubernetes'
+          	defaultContainer 'jnlp'
+        }
+    }
     tools{
         maven 'maven_3_9_10'
     }
@@ -39,11 +44,6 @@ pipeline {
         }
 
         stage('Deploy to k8s'){
-            agent {
-                docker {
-                    image 'bitnami/kubectl:latest'
-                }
-            }
             steps{
               script{
                  kubernetesDeploy (configs: 'k8s/deployment.yml',kubeconfigId: 'kubeconfig')
