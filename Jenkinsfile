@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+          image 'bitnami/kubectl:latest'
+        }
+    }
     tools{
         maven 'maven_3_9_10'
     }
