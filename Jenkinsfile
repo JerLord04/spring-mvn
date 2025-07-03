@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-          image 'bitnami/kubectl:latest'
-        }
-    }
+    agent any
     tools{
         maven 'maven_3_9_10'
     }
@@ -43,6 +39,11 @@ pipeline {
         }
 
         stage('Deploy to k8s') {
+              agent {
+                docker {
+                  image 'bitnami/kubectl:latest'
+                }
+              }
             steps {
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     sh '''
