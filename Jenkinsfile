@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        kubernetes {
-          	cloud 'kubernetes'
-          	defaultContainer 'jnlp'
-        }
-    }
+    agent any
     tools{
         maven 'maven_3_9_10'
     }
@@ -50,7 +45,6 @@ pipeline {
                  kubernetesDeploy (configs: 'k8s/service.yml',kubeconfigId: 'kubeconfig')
               }
             }
-
         }
     }
 }
